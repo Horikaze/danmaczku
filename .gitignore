@@ -35,4 +35,3 @@ firebase_env.ts
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-firebase/clientApp.ts
