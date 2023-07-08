@@ -21,7 +21,7 @@ export default function RootLayout({
           <Nav />
           {children}
           <div className="fixed bottom-24 right-5 p-3  opacity-10 bg-slate-300">
-            <Link href={"https://github.com/Horikaze/danmaczku"}>GIT</Link>
+            <Link href={"https://github.com/Horikaze/danmaczku"} target="_blank">GIT</Link>
           </div>
           <div className="fixed text-4xl bottom-5 right-5 p-3  opacity-10 bg-slate-300">
             <p>BETA</p>
