@@ -14,10 +14,7 @@ export const getUserWithImage = async (uid: string) => {
   const userRef = doc(db, "users", uid);
   const snapshot = await getDoc(userRef);
   const user = snapshot.data() as PrivateUser;
-  console.log(user);
   let imageLink;
-  console.log(user);
-
   if (user.image) {
     const storagepfp = ref(storage, `/users/${uid}/pfp/${user.image}`);
     await getDownloadURL(storagepfp)
@@ -34,6 +31,5 @@ export const getUserWithImage = async (uid: string) => {
     publicUser: user,
     imageLink: imageLink!,
   };
-
   return userWithImage;
 };

@@ -1,8 +1,8 @@
 import { Timestamp } from "firebase/firestore";
 type stamp = {
-  seconds:number
-  nanoseconds:number
-}
+  seconds: number;
+  nanoseconds: number;
+};
 export const timestampToDateString = (timestamp: Timestamp): string => {
   const stamp = timestamp as unknown as stamp;
   const joinDate = new Timestamp(stamp.seconds, stamp.nanoseconds).toDate();
@@ -13,8 +13,6 @@ export const timestampToDateString = (timestamp: Timestamp): string => {
     hour: "2-digit",
     minute: "2-digit",
   });
-  console.log(formattedDate);
-  
   return formattedDate;
 };
 export const timestampToDateStringnoFixed = (timestamp: Timestamp): string => {

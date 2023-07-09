@@ -57,15 +57,14 @@ export default function ProfileImageAndSettings({ user }: ProfileImageProps) {
       <div className="col-start-2 justify-center flex flex-col">
         <div className="flex flex-col justify-center items-center">
           <label
-            htmlFor="changePfp"
             className="h-20 w-20 cursor-pointer hover:brightness-110 relative"
+            htmlFor="changePfp"
           >
             <Image
               className="rounded-sm"
               src={user.imageLink}
               sizes="100vw"
               alt="pfp"
-              fill
               priority
             />
             <input
