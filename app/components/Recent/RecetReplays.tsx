@@ -5,18 +5,14 @@ import RecentItem from "./RecentItem";
 import CardWithName from "@/app/utils/components/CardWithName";
 const db = initDb();
 export default async function RecetReplays() {
-  const recentRpy = async () => {
-    const replays: RpyReq[] = [];
-    const col = collection(db, "replay");
-    const q = query(col, orderBy("addDate", "desc"), limit(4));
-    const snapshot = await getDocs(q);
-    const snapData = snapshot.docs;
-    snapData.forEach((element) => {
-      replays.push(element.data() as RpyReq);
+  const getData = async () => {
+    const res = await fetch(process.env.NEXT_PUBLIC_RECENT as string, {
+      cache: "no-store",
     });
-    return replays;
+    const data = await res.json();
+    return data as RpyReq[];
   };
-  const data = await recentRpy();
+  const data = await getData();
   return (
     <CardWithName nameToDisplay="Ostatnio dodane">
       <div className="flex flex-col gap-2 2xl:my-1">

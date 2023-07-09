@@ -1,26 +1,18 @@
 import { PrivateUser } from "@/app/types/types";
 import CardWithName from "@/app/utils/components/CardWithName";
 import { getUserWithImage } from "@/app/utils/publicUser";
-import { initDb } from "@/firebase/clientApp";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import UserListItem from "./UserListItem";
 
 export default async function Users() {
-  const db = initDb();
-  const getAllUsers = async () => {
-    let users: PrivateUser[] = [];
-    const col = collection(db, "users");
-    const q = query(col);
-    const snapshot = await getDocs(q);
-    const snapData = snapshot.docs;
-    snapData.forEach((element) => {
-      users.push(element.data() as PrivateUser);
+  const getData = async () => {
+    const res = await fetch(process.env.NEXT_PUBLIC_USERS as string, {
+      cache: "no-store",
     });
-    return users;
+    const data = await res.json();
+    return data as PrivateUser[];
   };
-  const data = await getAllUsers();
+  const data = await getData();
   data.sort((a, b) => a.displayName.localeCompare(b.displayName, 'en', { sensitivity: 'base' }));
-
   return (
     <CardWithName nameToDisplay={"Gracze"}>
       <div className="flex flex-col gap-2 max-h-[38rem] min-h-[38rem] overflow-y-auto pr-2">
