@@ -1,4 +1,4 @@
-import { timestampToDateStringnoFixed } from "@/app/utils/refactorFunc";
+import { timestampToDateString, timestampToDateStringnoFixed } from "@/app/utils/refactorFunc";
 import { RpyReq } from "../../types/types";
 import Link from "next/link";
 
@@ -13,7 +13,7 @@ export default function RecentItem({ rpy }: RecentReplayProps) {
         <div className="flex justify-start text-text flex-col">
           <p>
             <strong>Data dodania: </strong>
-            {timestampToDateStringnoFixed(rpy.addDate!)}
+            {timestampToDateString(rpy.addDate!)}
           </p>
           <p>
             <strong>Gracz: </strong> {rpy.userNickname}

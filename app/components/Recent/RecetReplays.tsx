@@ -13,6 +13,8 @@ export default async function RecetReplays() {
     return data as RpyReq[];
   };
   const data = await getData();
+  console.log(data);
+  
   return (
     <CardWithName nameToDisplay="Ostatnio dodane">
       <div className="flex flex-col gap-2 2xl:my-1">
