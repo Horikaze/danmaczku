@@ -4,7 +4,9 @@ import { getUserWithImage } from "@/app/utils/publicUser";
 import CardWithName from "@/app/utils/components/CardWithName";
 export default async function RankingTotalCC({}) {
   const getData = async () => {
-    const res = await fetch(process.env.NEXT_PUBLIC_TOTALCC as string);
+    const res = await fetch(process.env.NEXT_PUBLIC_TOTALCC as string, {
+      cache: "no-store",
+    });
     const data = await res.json();
     return data as PrivateUserImageLink[];
   };

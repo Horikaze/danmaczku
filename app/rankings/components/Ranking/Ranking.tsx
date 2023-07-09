@@ -20,6 +20,7 @@ export default async function Ranking({
     const res = await fetch(process.env.NEXT_PUBLIC_RANKAPI as string, {
       method: "POST",
       body: bodyContent,
+      cache: "no-store",
     });
     const data = await res.json();
     return data as PrivateUserImageLink[];
