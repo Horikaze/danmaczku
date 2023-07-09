@@ -8,7 +8,6 @@ const db = initDb();
 export const revalidate = 1;
 export async function GET(request: NextRequest, response: NextResponse) {
   let users: PrivateUser[] = [];
-  let usersImage: PrivateUserImageLink[] = [];
   const col = collection(db, "users");
   const q = query(col);
   const snapshot = await getDocs(q);
@@ -16,6 +15,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
   snapData.forEach((element) => {
     users.push(element.data() as PrivateUser);
   });
+  let usersImage: PrivateUserImageLink[] = [];
   for (const user of users) {
     const userWithImage = await getUserWithImage(user.uid);
     usersImage.push(userWithImage);

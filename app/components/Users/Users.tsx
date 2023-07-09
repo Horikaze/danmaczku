@@ -12,8 +12,6 @@ export default async function Users() {
     return data as PrivateUserImageLink[];
   };
   const data = await getData();
-  console.log(data);
-
   data.sort((a, b) =>
     a.publicUser.displayName.localeCompare(b.publicUser.displayName, "en", {
       sensitivity: "base",
