@@ -73,7 +73,7 @@ export default function SurvivalTable({ data }: SurvivalTableProps) {
                       : cellValue === 4
                       ? "bg-pink-400"
                       : cellValue === 5
-                      ? "bg-red-400"
+                      ? "bg-pink-400"
                       : "bg-content";
 
                   const rpyData = data[
