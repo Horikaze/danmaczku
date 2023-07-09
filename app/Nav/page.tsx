@@ -49,7 +49,7 @@ export default function Nav() {
         </p>
 
         <Link
-          href={"profile"}
+          href={"/profile"}
           className={`px-5 py-2 border-b-2 transition-colors duration-300 hover:border-orange-400 ${
             url === "/profile" ? "border-orange-400" : "border-transparent"
           }`}
