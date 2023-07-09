@@ -65,6 +65,7 @@ export default function ProfileImageAndSettings({ user }: ProfileImageProps) {
               src={user.imageLink}
               sizes="100vw"
               alt="pfp"
+              fill
               priority
             />
             <input

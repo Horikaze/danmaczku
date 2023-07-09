@@ -11,9 +11,11 @@ interface ProfileProps {
 }
 
 export default function Profile({ user }: ProfileProps) {
+  console.log(user.uid);
+
   const { data, isLoading, refetch } = useQuery<PrivateUserImageLink>({
     queryFn: () => getUserWithImage(user.uid),
-    queryKey: [`${user.uid}`],
+    queryKey: [`${user}`],
     refetchIntervalInBackground: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,

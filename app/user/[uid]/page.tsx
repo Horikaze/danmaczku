@@ -16,7 +16,7 @@ export async function generateMetadata({
   };
 }
 export default async function Page({ params }: UserInfoParams) {
-  const user = await getUserWithImage(params.uid);  
+  const user = await getUserWithImage(params.uid);
   return (
     <div className="flex mt-5 flex-col place-items-center 2xl:grid 2xl:grid-cols-2 gap-5 justify-center drop-shadow-md">
       <Profile imageLink={user.imageLink} user={user.publicUser} />
