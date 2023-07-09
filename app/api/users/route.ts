@@ -1,4 +1,5 @@
-import { PrivateUser } from "@/app/types/types";
+import { PrivateUser, PrivateUserImageLink } from "@/app/types/types";
+import { getUserWithImage } from "@/app/utils/publicUser";
 import { initDb } from "@/firebase/clientApp";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
@@ -7,6 +8,7 @@ const db = initDb();
 export const revalidate = 1;
 export async function GET(request: NextRequest, response: NextResponse) {
   let users: PrivateUser[] = [];
+  let usersImage: PrivateUserImageLink[] = [];
   const col = collection(db, "users");
   const q = query(col);
   const snapshot = await getDocs(q);
@@ -14,7 +16,11 @@ export async function GET(request: NextRequest, response: NextResponse) {
   snapData.forEach((element) => {
     users.push(element.data() as PrivateUser);
   });
+  for (const user of users) {
+    const userWithImage = await getUserWithImage(user.uid);
+    usersImage.push(userWithImage);
+  }
   const path = request.nextUrl.searchParams.get("path") || "/";
   revalidatePath(path);
-  return new NextResponse(JSON.stringify(users));
+  return new NextResponse(JSON.stringify(usersImage));
 }
