@@ -4,7 +4,7 @@ import { getUserWithImage } from "@/app/utils/publicUser";
 import CardWithName from "@/app/utils/components/CardWithName";
 export default async function RankingTotalCC({}) {
   const getData = async () => {
-    const res = await fetch("http://localhost:3000/api/totalcc", {
+    const res = await fetch("https://danmaczku.vercel.app/api/totalcc", {
       cache: "no-store",
     });
     const data = await res.json();

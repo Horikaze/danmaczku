@@ -1,11 +1,7 @@
 import { UserPointRanking } from "@/app/types/types";
-import { initDb } from "@/firebase/clientApp";
-import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import RankItem from "../RankItem";
 import { getUserWithImage } from "@/app/utils/publicUser";
 import CardWithName from "@/app/utils/components/CardWithName";
-import { useQuery } from "@tanstack/react-query";
-const db = initDb();
 type RankingProps = {
   rankType: string;
   dbTarget: string;
@@ -21,7 +17,7 @@ export default async function Ranking({
   });
 
   const getRankingPoints = async () => {
-    const res = await fetch("http://localhost:3000/api/ranking", {
+    const res = await fetch("https://danmaczku.vercel.app/api/ranking", {
       cache: "no-store",
       method: "POST",
       body: bodyContent,
