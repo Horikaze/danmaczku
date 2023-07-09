@@ -5,7 +5,13 @@ type stamp = {
 };
 export const timestampToDateString = (timestamp: Timestamp): string => {
   const stamp = timestamp as unknown as stamp;
-  const joinDate = new Timestamp(stamp.seconds, stamp.nanoseconds).toDate();
+  let joinDate;
+  if (stamp.seconds == undefined) {
+    joinDate = new Date(timestamp as unknown as number);
+  } else {
+    joinDate = new Timestamp(stamp.seconds, stamp.nanoseconds).toDate();
+  }
+
   const formattedDate = joinDate.toLocaleString("en-GB", {
     day: "2-digit",
     month: "2-digit",
@@ -13,6 +19,7 @@ export const timestampToDateString = (timestamp: Timestamp): string => {
     hour: "2-digit",
     minute: "2-digit",
   });
+
   return formattedDate;
 };
 export const timestampToDateStringnoFixed = (timestamp: Timestamp): string => {

@@ -57,7 +57,7 @@ export default function Profile({ imageLink, user }: ProfileParams) {
           <div className="flex-grow border-t-2 border-gray-400"></div>
           <p>
             <strong>Data dołączenia: </strong>
-            {timestampToDateString(user.joindate)}
+            {timestampToDateString(user.joindate!)}
           </p>
           <div className="flex-grow border-t-2 border-gray-400"></div>
           <p>
