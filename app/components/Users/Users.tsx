@@ -6,7 +6,6 @@ import UserListItem from "./UserListItem";
 export default async function Users() {
   const getData = async () => {
     const res = await fetch(process.env.NEXT_PUBLIC_USERS as string, {
-      cache: "no-store",
       next: {
         revalidate: 1,
       },

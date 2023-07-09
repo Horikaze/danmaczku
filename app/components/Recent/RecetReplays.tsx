@@ -11,7 +11,7 @@ export default async function RecetReplays() {
     const data = await res.json();
     return data as RpyReq[];
   };
-  const data = await getData();  
+  const data = await getData();
   return (
     <CardWithName nameToDisplay="Ostatnio dodane">
       <div className="flex flex-col gap-2 2xl:my-1">
