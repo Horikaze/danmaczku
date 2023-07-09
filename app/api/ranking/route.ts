@@ -3,9 +3,7 @@ import { initDb } from "@/firebase/clientApp";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 const db = initDb();
-export const config = {
-  runtime: 'edge',
-}
+export const revalidate = 1
 export async function POST(request: NextRequest, response: NextResponse) {
   const ranking: UserPointRanking[] = [];
   const res = await request.json();

@@ -3,12 +3,7 @@ import RecentItem from "./RecentItem";
 import CardWithName from "@/app/utils/components/CardWithName";
 export default async function RecetReplays() {
   const getData = async () => {
-    // const res = await fetch(process.env.NEXT_PUBLIC_RECENT as string, {
-    const res = await fetch("http://localhost:3000/api/recent", {
-      next: {
-        revalidate: 1,
-      },
-    });
+    const res = await fetch(process.env.NEXT_PUBLIC_RECENT as string, {});
     const data = await res.json();
     return data as RpyReq[];
   };

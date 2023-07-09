@@ -17,8 +17,7 @@ export default async function Ranking({
   });
 
   const getRankingPoints = async () => {
-    // const res = await fetch(process.env.NEXT_PUBLIC_RANKAPI as string, {
-    const res = await fetch("http://localhost:3000/api/ranking", {
+    const res = await fetch(process.env.NEXT_PUBLIC_RANKAPI as string, {
       cache: "no-store",
       method: "POST",
       body: bodyContent,
