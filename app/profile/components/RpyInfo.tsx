@@ -268,99 +268,103 @@ export default function RpyInfo({ user }: RpyInfoProps) {
             {points}
           </p>
         </div>
-        <div className="flex flex-row justify-between py-4">
-          <div className="grid grid-flow-col items-center grid-rows-3 text-text">
-            <div>
-              <input
-                type="checkbox"
-                className="w-4 h-4 mr-2 cursor-pointer accent-orange-400"
-                id="1cc"
-                checked={isCC}
-                onChange={() => setisCC(!isCC)}
-              />
-              <label htmlFor="1cc" className="cursor-pointer">
-                1cc?
-              </label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                className="w-4 h-4 mr-2 cursor-pointer accent-orange-400"
-                id="noMiss"
-                onChange={() => handleCheckboxChange("noMiss")}
-                checked={nnnCount.includes("noMiss") ? true : false}
-              />
-              <label htmlFor="noMiss" className="cursor-pointer">
-                No miss
-              </label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                checked={nnnCount.includes("noBomb") ? true : false}
-                className="w-4 h-4 mr-2 cursor-pointer accent-orange-400"
-                id="noBomb"
-                onChange={() => handleCheckboxChange("noBomb")}
-              />
-              <label htmlFor="noBomb" className="cursor-pointer">
-                No bomb
-              </label>
-            </div>
-            {rpyInfo.game === 7 ||
-            rpyInfo.game === 12 ||
-            rpyInfo.game === 13 ||
-            rpyInfo.game === 16 ||
-            rpyInfo.game === 17 ||
-            rpyInfo.game === 18 ? (
+        <div className="2xl:mt-16 2xl:mb-14">
+          <div className="flex flex-row justify-between py-4">
+            <div className="grid grid-flow-col items-center grid-rows-3 text-text">
               <div>
                 <input
                   type="checkbox"
                   className="w-4 h-4 mr-2 cursor-pointer accent-orange-400"
-                  id="noThirdCondition"
-                  checked={nnnCount.includes("noThirdCondition") ? true : false}
-                  onChange={() => handleCheckboxChange("noThirdCondition")}
+                  id="1cc"
+                  checked={isCC}
+                  onChange={() => setisCC(!isCC)}
                 />
-                <label htmlFor="noThirdCondition" className="cursor-pointer">
-                  {rpyInfo.game === 7 && "No border break"}
-                  {rpyInfo.game === 12 && "No ufo summons"}
-                  {rpyInfo.game === 13 && "No trance"}
-                  {rpyInfo.game === 16 && "No relase"}
-                  {rpyInfo.game === 17 && "No hyper or No roar breaks"}
-                  {rpyInfo.game === 18 && "No card"}
+                <label htmlFor="1cc" className="cursor-pointer">
+                  1cc?
                 </label>
               </div>
-            ) : (
-              ""
-            )}
-            {rpyInfo.game === 17 ? (
               <div>
                 <input
                   type="checkbox"
-                  checked={nnnCount.includes("wbawc") ? true : false}
                   className="w-4 h-4 mr-2 cursor-pointer accent-orange-400"
-                  id="wbawc"
-                  onChange={() => handleCheckboxChange("wbawc")}
+                  id="noMiss"
+                  onChange={() => handleCheckboxChange("noMiss")}
+                  checked={nnnCount.includes("noMiss") ? true : false}
                 />
-                <label htmlFor="wbawc" className="cursor-pointer">
-                  Additional No Hyper or/and No Roar Breaks
+                <label htmlFor="noMiss" className="cursor-pointer">
+                  No miss
                 </label>
               </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="w-64 h-32">
-            <textarea
-              maxLength={200}
-              value={additionalInfo}
-              placeholder="Dodaj dodatkowe info. Takie jak np. czy replay jest uszkodzony, ma desync, replay potrzebuję narzędzi, aby mógł zostać poprawnie otworzony (max. 200 znaków)."
-              className={`rounded-sm w-full bg-content p-2 h-full text-sm resize-none outline-none ${
-                additionalInfo.length > 190 ? "text-red-600" : "text-text"
-              }`}
-              onChange={(e) => {
-                setAdditionalInfo(e.target.value);
-              }}
-            />
+              <div>
+                <input
+                  type="checkbox"
+                  checked={nnnCount.includes("noBomb") ? true : false}
+                  className="w-4 h-4 mr-2 cursor-pointer accent-orange-400"
+                  id="noBomb"
+                  onChange={() => handleCheckboxChange("noBomb")}
+                />
+                <label htmlFor="noBomb" className="cursor-pointer">
+                  No bomb
+                </label>
+              </div>
+              {rpyInfo.game === 7 ||
+              rpyInfo.game === 12 ||
+              rpyInfo.game === 13 ||
+              rpyInfo.game === 16 ||
+              rpyInfo.game === 17 ||
+              rpyInfo.game === 18 ? (
+                <div>
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 mr-2 cursor-pointer accent-orange-400"
+                    id="noThirdCondition"
+                    checked={
+                      nnnCount.includes("noThirdCondition") ? true : false
+                    }
+                    onChange={() => handleCheckboxChange("noThirdCondition")}
+                  />
+                  <label htmlFor="noThirdCondition" className="cursor-pointer">
+                    {rpyInfo.game === 7 && "No border break"}
+                    {rpyInfo.game === 12 && "No ufo summons"}
+                    {rpyInfo.game === 13 && "No trance"}
+                    {rpyInfo.game === 16 && "No relase"}
+                    {rpyInfo.game === 17 && "No hyper or No roar breaks"}
+                    {rpyInfo.game === 18 && "No card"}
+                  </label>
+                </div>
+              ) : (
+                ""
+              )}
+              {rpyInfo.game === 17 ? (
+                <div>
+                  <input
+                    type="checkbox"
+                    checked={nnnCount.includes("wbawc") ? true : false}
+                    className="w-4 h-4 mr-2 cursor-pointer accent-orange-400"
+                    id="wbawc"
+                    onChange={() => handleCheckboxChange("wbawc")}
+                  />
+                  <label htmlFor="wbawc" className="cursor-pointer">
+                    Additional No Hyper or/and No Roar Breaks
+                  </label>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="w-64 h-32">
+              <textarea
+                maxLength={200}
+                value={additionalInfo}
+                placeholder="Dodaj dodatkowe info. Takie jak np. czy replay jest uszkodzony, ma desync, replay potrzebuję narzędzi, aby mógł zostać poprawnie otworzony (max. 200 znaków)."
+                className={`rounded-sm w-full bg-content p-2 h-full text-sm resize-none outline-none ${
+                  additionalInfo.length > 190 ? "text-red-600" : "text-text"
+                }`}
+                onChange={(e) => {
+                  setAdditionalInfo(e.target.value);
+                }}
+              />
+            </div>
           </div>
         </div>
         <div className="flex justify-center">
