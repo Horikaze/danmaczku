@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PrivateUserImageLink } from "@/app/types/types";
-import { timestampToDateString } from "@/app/utils/refactorFunc";
 type UserListItemProps = {
   user: PrivateUserImageLink;
   index: number;
