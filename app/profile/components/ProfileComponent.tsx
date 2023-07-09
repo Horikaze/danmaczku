@@ -4,8 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserWithImage } from "@/app/utils/publicUser";
 import RpyInfo from "./RpyInfo";
 import Table from "./Table";
-import Loading from "@/app/rankings/loading";
 import UserAndSettings from "./UserAndSettings";
+import Loading from "@/app/loading";
 interface ProfileProps {
   user: User;
 }

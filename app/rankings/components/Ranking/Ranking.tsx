@@ -4,6 +4,7 @@ import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import RankItem from "../RankItem";
 import { getUserWithImage } from "@/app/utils/publicUser";
 import CardWithName from "@/app/utils/components/CardWithName";
+import { useQuery } from "@tanstack/react-query";
 const db = initDb();
 type RankingProps = {
   rankType: string;
@@ -15,26 +16,33 @@ export default async function Ranking({
   rankType,
   toShow,
 }: RankingProps) {
+  let bodyContent = JSON.stringify({
+    dbTarget: dbTarget,
+  });
+
   const getRankingPoints = async () => {
-    const ranking: UserPointRanking[] = [];
-    const col = collection(db, dbTarget);
-    const q = query(col, orderBy("total", "desc"), limit(20));
-    const snapshot = await getDocs(q);
-    const snapData = snapshot.docs;
-    snapData.forEach((element) => {
-      ranking.push(element.data() as UserPointRanking);
+    const res = await fetch("http://localhost:3000/api/ranking", {
+      cache: "no-store",
+      method: "POST",
+      body: bodyContent,
     });
-    return ranking;
+    const data = await res.json();
+    return data as UserPointRanking[];
   };
   const data = await getRankingPoints();
-
   return (
     <CardWithName nameToDisplay={rankType}>
-      <div className="flex flex-col gap-2 max-h-[38rem] overflow-y-auto pr-2">
-        {data.map(async (e, index) => {
+      <div className="flex flex-col gap-2 max-h-[38rem] min-h-[38rem] overflow-y-auto pr-2">
+        {data!.map(async (e, index) => {
           const user = await getUserWithImage(e.uid);
           return (
-            <RankItem index={index} user={user} key={index} toShow={toShow} unit="pkt." />
+            <RankItem
+              index={index}
+              user={user}
+              key={index}
+              toShow={toShow}
+              unit="pkt."
+            />
           );
         })}
       </div>
