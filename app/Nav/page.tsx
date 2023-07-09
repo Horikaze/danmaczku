@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
+import { revalidatePath } from "next/cache";
 export default function Nav() {
   const url = usePathname();
 

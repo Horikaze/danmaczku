@@ -14,15 +14,22 @@ export const getUserWithImage = async (uid: string) => {
   const userRef = doc(db, "users", uid);
   const snapshot = await getDoc(userRef);
   const user = snapshot.data() as PrivateUser;
+  console.log(user);
   let imageLink;
-  const storagepfp = ref(storage, `/users/${uid}/pfp/${user.image}`);
-  await getDownloadURL(storagepfp)
-    .then((e) => {
-      imageLink = e;
-    })
-    .catch((e) => {
-      imageLink = `https://ui-avatars.com/api/?name=${user.displayName}`;
-    });
+  console.log(user);
+
+  // if (user.image) {
+  //   const storagepfp = ref(storage, `/users/${uid}/pfp/${user.image}`);
+  //   await getDownloadURL(storagepfp)
+  //     .then((e) => {
+  //       imageLink = e;
+  //     })
+  //     .catch((e) => {
+        imageLink = `https://ui-avatars.com/api/?name=${user.displayName}`;
+  //     });
+  // } else {
+  //   imageLink = `https://ui-avatars.com/api/?name=${user.displayName}`;
+  // }
   const userWithImage: PrivateUserImageLink = {
     publicUser: user,
     imageLink: imageLink!,

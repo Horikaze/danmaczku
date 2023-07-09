@@ -1,20 +1,17 @@
-import { initDb } from "@/firebase/clientApp";
-import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { RpyReq } from "../../types/types";
 import RecentItem from "./RecentItem";
 import CardWithName from "@/app/utils/components/CardWithName";
-const db = initDb();
 export default async function RecetReplays() {
   const getData = async () => {
     const res = await fetch(process.env.NEXT_PUBLIC_RECENT as string, {
-      cache: "no-store",
+      next: {
+        revalidate: 1,
+      },
     });
     const data = await res.json();
     return data as RpyReq[];
   };
-  const data = await getData();
-  console.log(data);
-  
+  const data = await getData();  
   return (
     <CardWithName nameToDisplay="Ostatnio dodane">
       <div className="flex flex-col gap-2 2xl:my-1">
