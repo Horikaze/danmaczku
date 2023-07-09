@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+export const config = {
+  runtime: 'edge',
+}
 export async function POST(request: NextRequest, response: NextResponse) {
-  console.log(request.body);
-
   const body: FormData | Promise<FormData> = await request.formData();
   const replayFile: File = body.get("replay") as File;
   const formData = new FormData();

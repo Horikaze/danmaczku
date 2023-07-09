@@ -18,18 +18,18 @@ export const getUserWithImage = async (uid: string) => {
   let imageLink;
   console.log(user);
 
-  // if (user.image) {
-  //   const storagepfp = ref(storage, `/users/${uid}/pfp/${user.image}`);
-  //   await getDownloadURL(storagepfp)
-  //     .then((e) => {
-  //       imageLink = e;
-  //     })
-  //     .catch((e) => {
+  if (user.image) {
+    const storagepfp = ref(storage, `/users/${uid}/pfp/${user.image}`);
+    await getDownloadURL(storagepfp)
+      .then((e) => {
+        imageLink = e;
+      })
+      .catch((e) => {
         imageLink = `https://ui-avatars.com/api/?name=${user.displayName}`;
-  //     });
-  // } else {
-  //   imageLink = `https://ui-avatars.com/api/?name=${user.displayName}`;
-  // }
+      });
+  } else {
+    imageLink = `https://ui-avatars.com/api/?name=${user.displayName}`;
+  }
   const userWithImage: PrivateUserImageLink = {
     publicUser: user,
     imageLink: imageLink!,
