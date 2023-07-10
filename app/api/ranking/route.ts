@@ -21,7 +21,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     const userWithImage = await getUserWithImage(user.uid);
     usersImage.push(userWithImage);
   }
-  const path = request.nextUrl.searchParams.get("path") || "/";
-  revalidatePath(path);
+  // const path = request.nextUrl.searchParams.get("path") || "/";
+  // revalidatePath(path);
   return new NextResponse(JSON.stringify(usersImage));
 }
