@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
   snapData.forEach((element) => {
     replays.push(element.data() as RpyReq);
   });
-  // const path = request.nextUrl.searchParams.get("path") || "/";
-  // revalidatePath(path);
+  const path = request.nextUrl.searchParams.get("path") || "/";
+  revalidatePath(path);
   return new NextResponse(JSON.stringify(replays));
 }
