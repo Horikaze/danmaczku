@@ -5,6 +5,7 @@ import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 const db = initDb();
+export const revalidate = 1;
 export async function POST(request: NextRequest, response: NextResponse) {
   const ranking: UserPointRanking[] = [];
   const res = await request.json();
@@ -21,7 +22,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     const userWithImage = await getUserWithImage(user.uid);
     usersImage.push(userWithImage);
   }
-  const path = request.nextUrl.searchParams.get("path") || "/";
-  revalidatePath(path);
+  // const path = request.nextUrl.searchParams.get("path") || "/";
+  // revalidatePath(path);
   return new NextResponse(JSON.stringify(usersImage));
 }
