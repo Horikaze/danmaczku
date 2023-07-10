@@ -13,6 +13,7 @@ export default function Register() {
       const formData = new FormData(event.currentTarget);
       const nickname = formData.get("nickname") as string;
       const password = formData.get("password") as string;
+      const password2 = formData.get("password2") as string;
       if (nickname == "" || password == "") {
         throw new Error("Wpisz dane baka!");
       }
@@ -23,6 +24,9 @@ export default function Register() {
         password.length > 20
       ) {
         throw new Error("Hasło < 6, Nickname < 2, Max 20 znków");
+      }
+      if (password !== password2) {
+        throw new Error("Hasła nie są takie same");
       }
       const result = await createUserWithEmailAndPassword(
         auth,
@@ -70,6 +74,12 @@ export default function Register() {
           type="password"
           name="password"
           placeholder="Hasło"
+          className="p-2 rounded-sm focus:outline-none  w-4/5 bg-content text-sm outline-gray-400"
+        />
+        <input
+          type="password"
+          name="password2"
+          placeholder="Powtórz hasło"
           className="p-2 rounded-sm focus:outline-none  w-4/5 bg-content text-sm outline-gray-400"
         />
         <button

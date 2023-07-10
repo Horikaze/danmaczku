@@ -42,10 +42,11 @@ export default function Login() {
   };
   return (
     <CardWithoutName>
+        
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-2 justify-center text-text items-center py-4 px-10"
-      >
+        >
         <input
           type="text"
           name="nickname"
@@ -56,7 +57,7 @@ export default function Login() {
           type="password"
           name="password"
           placeholder="Hasło"
-          className="p-2 rounded-sm focus:outline-none  w-4/5 bg-content text-sm outline-gray-400"
+          className="p-2 rounded-sm focus:outline-none 2xl:mb-11  w-4/5 bg-content text-sm outline-gray-400"
         />
         <div className="grid grid-cols-3 w-full">
           <div className="col-start-2 flex justify-center">
