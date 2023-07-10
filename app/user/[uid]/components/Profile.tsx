@@ -30,7 +30,7 @@ export default function Profile({ imageLink, user }: ProfileParams) {
             </div>
           </div>
             <div className="flex flex-col col-start-3 text-text text-center justify-center bg-content h-32 my-2 rounded-sm">
-              <h1>TODO Achievements list</h1>
+              <h1>TODO badge list</h1>
             </div>
         </div>
         <div className="text-text flex flex-col gap-1">

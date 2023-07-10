@@ -52,7 +52,7 @@ export default function ProfileImageAndSettings({ user }: ProfileImageProps) {
   return (
     <div className="grid grid-cols-3">
       <div className="flex flex-col col-start-1 text-text text-center justify-center bg-content h-32 my-2 rounded-sm">
-        <h1>TODO Achievements list</h1>
+        <h1>TODO badge list</h1>
       </div>
       <div className="col-start-2 justify-center flex flex-col">
         <div className="flex flex-col justify-center items-center">
