@@ -91,7 +91,11 @@ export default function SurvivalTable({ data }: SurvivalTableProps) {
                         cellValue && "cursor-pointer hover:brightness-110"
                       }`}
                     >
-                      <Link href={`/replay/${checksum}`} className="text-white">
+                      <Link
+                        href={`/replay/${checksum}`}
+                        className="text-white"
+                        prefetch={false}
+                      >
                         {character ? character + " " + shottype : ""}
                       </Link>
                     </td>

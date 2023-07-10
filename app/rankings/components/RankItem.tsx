@@ -5,11 +5,16 @@ type RankItemProps = {
   user: PrivateUserImageLink;
   toShow: string;
   index: number;
-  unit:string
+  unit: string;
 };
-export default async function RankItem({ user, index, toShow,unit }: RankItemProps) {
+export default async function RankItem({
+  user,
+  index,
+  toShow,
+  unit,
+}: RankItemProps) {
   return (
-    <Link href={`/user/${user.publicUser.uid}`}>
+    <Link href={`/user/${user.publicUser.uid}`} prefetch={false}>
       <div
         className={`bg-content hover:brightness-125 cursor-pointer transition-all duration-300 flex flex-row ${
           index === 0
@@ -38,11 +43,18 @@ export default async function RankItem({ user, index, toShow,unit }: RankItemPro
               priority
             />
           </div>
-          <strong>{user.publicUser.displayName} <span className="text-yellow-200">{user.publicUser.admin && "⚙"}</span></strong>
+          <strong>
+            {user.publicUser.displayName}{" "}
+            <span className="text-yellow-200">
+              {user.publicUser.admin && "⚙"}
+            </span>
+          </strong>
         </div>
         <div className="flex flex-row text-text justify-center items-center">
           <h1>
-            <strong>{user.publicUser[toShow]} {unit}</strong>
+            <strong>
+              {user.publicUser[toShow]} {unit}
+            </strong>
           </h1>
         </div>
       </div>
