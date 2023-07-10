@@ -8,7 +8,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="py-1 md:py-3 sticky top-0 z-10 flex text-sm md:text-base flex-row justify-evenly bg-navbar text-center items-center text-text rounded-sm">
+      <nav className="py-1 md:py-3 sticky top-0 z-10 flex text-sm md:text-base flex-row justify-evenly  bg-navbar text-center items-center text-text rounded-sm">
         <Link
           href={"/"}
           className={`px-5 py-2 border-b-2 transition-colors duration-300 hover:border-orange-400 ${

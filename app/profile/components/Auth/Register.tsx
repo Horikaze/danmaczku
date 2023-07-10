@@ -32,7 +32,6 @@ export default function Register() {
       await updateProfile(auth.currentUser!, {
         displayName: nickname,
       });
-
       await setDoc(doc(db, "users", result.user.uid), {
         displayName: nickname,
         uid: result.user.uid,
