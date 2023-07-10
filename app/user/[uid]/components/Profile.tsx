@@ -12,8 +12,8 @@ type ProfileParams = {
 export default function Profile({ imageLink, user }: ProfileParams) {
   return (
     <CardWithName nameToDisplay={user.displayName}>
-      <div className="flex flex-col justify-center 2xl:mb-8">
-        <div className="grid grid-cols-3 mb-4 2xl:mb-8">
+      <div className="flex flex-col justify-center">
+        <div className="grid grid-cols-3">
           <div>
             <RouterBack />
           </div>
@@ -29,6 +29,9 @@ export default function Profile({ imageLink, user }: ProfileParams) {
               />
             </div>
           </div>
+            <div className="flex flex-col col-start-3 text-text text-center justify-center bg-content h-32 my-2 rounded-sm">
+              <h1>TODO Achievements list</h1>
+            </div>
         </div>
         <div className="text-text flex flex-col gap-1">
           <div className="flex-grow border-t-2 border-gray-400"></div>
