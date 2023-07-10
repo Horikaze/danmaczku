@@ -8,7 +8,6 @@ export const metadata = {
   title: "Danmaczku",
   description: "Imagine grać w touhou nieironicznie",
 };
-export const revalidate = 60
 const rubik = Rubik({ subsets: ["latin"] });
 export default function RootLayout({
   children,
