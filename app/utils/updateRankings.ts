@@ -203,6 +203,8 @@ export const getGameNameFromCode = (gameCode: number) => {
       return "sa";
     case 12:
       return "ufo";
+    case 128:
+      return "gfw";
     case 13:
       return "td";
     case 14:
