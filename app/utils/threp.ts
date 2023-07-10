@@ -68,7 +68,7 @@ export const updateRpy = async (
         return dataAndRpy;
       } else {
         toast.error("Invalid file format or size", { id: toastId });
-        return undefined;
+        throw new Error("sussy");
       }
     }
   } catch (e) {
