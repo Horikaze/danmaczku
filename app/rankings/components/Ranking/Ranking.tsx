@@ -29,7 +29,7 @@ export default async function Ranking({
   return (
     <CardWithName nameToDisplay={rankType}>
       <div className="flex flex-col gap-2 max-h-[38rem] min-h-[38rem] overflow-y-auto pr-2">
-        {data!.map(async (e, index) => {
+        {data!.map((e, index) => {
           return (
             <RankItem
               index={index}

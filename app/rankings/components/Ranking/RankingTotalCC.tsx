@@ -14,7 +14,7 @@ export default async function RankingTotalCC({}) {
   return (
     <CardWithName nameToDisplay={"Ranking ilości 1cc"}>
       <div className="flex flex-col gap-2 max-h-[38rem] min-h-[38rem] overflow-y-auto pr-2">
-        {data!.map(async (e, index) => {
+        {data!.map((e, index) => {
           return (
             <RankItem
               index={index}
