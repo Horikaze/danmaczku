@@ -10,8 +10,8 @@ import {
 } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
-const db = initDb();
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
+  const db = initDb();
   const replays: RpyReq[] = [];
   const res = await request.json();
   const game = res.game;
@@ -19,8 +19,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
   const col = collection(db, "replay");
   const q = query(
     col,
-    where("game", "==", game),
-    where("rank", "==", rank),
+    where("game", "==", Number(game)),
+    where("rank", "==", `${rank}`),
     orderBy("stage_score", "desc"),
     limit(4)
   );
@@ -29,7 +29,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
   snapData.forEach((element) => {
     replays.push(element.data() as RpyReq);
   });
-  const path = request.nextUrl.searchParams.get("path") || "/";
-  revalidatePath(path);
-  return new NextResponse(JSON.stringify(replays));
+
+  return NextResponse.json(replays);
 }
