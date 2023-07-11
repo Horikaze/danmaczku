@@ -5,6 +5,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 import { Metadata } from "next";
 import ReplayInfo from "./components/ReplayInfo";
+import RankingRpy from "./components/RankingRpy";
 type ReplayInfoParams = {
   params: { checksum: string };
 };
@@ -28,6 +29,7 @@ export default async function Page({ params }: ReplayInfoParams) {
   return (
     <div className="flex mt-5 flex-col place-items-center text-text 2xl:grid 2xl:grid-cols-2 gap-5 justify-center drop-shadow-md">
       <ReplayInfo rpy={rpy} rpyLink={rpyLink} />
+      <RankingRpy rpy={rpy}/>
     </div>
   );
 }
