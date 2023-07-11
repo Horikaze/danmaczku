@@ -7,8 +7,8 @@ type RankingRpyProps = {
 };
 export default async function RankingRpy({ rpy }: RankingRpyProps) {
   let bodyContent = JSON.stringify({
-    game: "7",
-    rank: "Hard",
+    game: rpy.game,
+    rank: rpy.rank,
   });
 
   let response = await fetch(process.env.NEXT_PUBLIC_RANKRPY as string, {
@@ -16,12 +16,19 @@ export default async function RankingRpy({ rpy }: RankingRpyProps) {
     body: bodyContent,
   });
   const data: RpyReq[] = await response.json();
+
   return (
     <CardWithName nameToDisplay={`Ranking TH: ${rpy.game} ${rpy.rank}`}>
       <div className="flex flex-col gap-2 min-h-[505px]">
-        {data!.map((rpy) => {
-          return <RecentItem rpy={rpy} key={rpy.checksum} />;
-        })}
+        {data.length >= 1 ? (
+          data.map((rpy) => {
+            return <RecentItem rpy={rpy} key={rpy.checksum} />;
+          })
+        ) : (
+          <div className="text-text text-center text-3xl opacity-25">
+            <p>BRAK WYNIKÓW</p>
+          </div>
+        )}
       </div>
     </CardWithName>
   );
