@@ -28,11 +28,6 @@ export default async function Page({ params }: ReplayInfoParams) {
   return (
     <div className="flex mt-5 flex-col place-items-center text-text 2xl:grid 2xl:grid-cols-2 gap-5 justify-center drop-shadow-md">
       <ReplayInfo rpy={rpy} rpyLink={rpyLink} />
-      <CardWithName nameToDisplay={`Ranking Touhou ${rpy.game} ${rpy.rank}`}>
-        <div className="text-center text-3xl text-text">
-          <h1>TODO</h1>
-        </div>
-      </CardWithName>
     </div>
   );
 }
