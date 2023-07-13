@@ -36,17 +36,14 @@ export default function Nav() {
         >
           Szukaj
         </p>
-        <p
-          onClick={() => {
-            toast.error("Jeszcze nie zaimplementowano", { duration: 1500 });
-          }}
-          // href={"/search"}
+        <Link
+          href={"/info"}
           className={`px-5 py-2 border-b-2 transition-colors duration-300 hover:border-orange-400 cursor-pointer ${
             url === "/info" ? "border-orange-400" : "border-transparent"
           }`}
         >
           Info
-        </p>
+        </Link>
 
         <Link
           href={"/profile"}
