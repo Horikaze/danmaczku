@@ -40,8 +40,9 @@ export default function ProfileSettingsButton({ uid }: RequestsButtonProps) {
     const youtube = formData.get("youtube") as string;
     const favoriteGame = formData.get("favoriteGame") as string;
     const toChange = [displayName, discord, favoriteGame, twitter, youtube];
+    
     toChange.forEach(async (element) => {
-      if (element === undefined || element === "" || element.length < 3) {
+      if (element === undefined || element === "") {
         return;
       } else {
         switch (toChange.indexOf(element)) {
@@ -67,6 +68,7 @@ export default function ProfileSettingsButton({ uid }: RequestsButtonProps) {
     });
   };
   const changeProfile = async (option: string, value: string) => {
+    
     await updateDoc(doc(db, "users", uid), {
       [option]: value,
     });
