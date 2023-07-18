@@ -96,7 +96,7 @@ export default function SurvivalTable({ data }: SurvivalTableProps) {
                         className="text-white"
                         prefetch={false}
                       >
-                        {character ? character + " " + shottype : ""}
+                        <div>{character ? character + " " + shottype : ""}</div>
                       </Link>
                     </td>
                   );
