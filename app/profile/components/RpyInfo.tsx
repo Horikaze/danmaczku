@@ -294,7 +294,7 @@ export default function RpyInfo({ user }: RpyInfoProps) {
                   onChange={() => setisCC(!isCC)}
                 />
                 <label htmlFor="1cc" className="cursor-pointer">
-                  1cc?
+                  1cc
                 </label>
               </div>
               <div>
