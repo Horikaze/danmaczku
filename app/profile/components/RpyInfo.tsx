@@ -14,6 +14,7 @@ import { ref, uploadBytesResumable } from "firebase/storage";
 import { useQueryClient } from "@tanstack/react-query";
 import CardWithName from "@/app/utils/components/CardWithName";
 import CardWithoutName from "@/app/utils/components/CardWithoutName";
+import { calculateScorePoints } from "@/app/utils/scoreSystem";
 interface RpyInfoProps {
   user: PrivateUser;
 }
@@ -25,6 +26,7 @@ export default function RpyInfo({ user }: RpyInfoProps) {
   const [nnnCount, setNnnCount] = useState<string[]>([]);
   const [additionalInfo, setAdditionalInfo] = useState<string>("");
   const [points, setPoints] = useState<number>(0);
+  const [scorePoints, setScorePoints] = useState<number>(0);
   const [isCC, setisCC] = useState<boolean>(true);
   const [file, setFile] = useState<File>();
   const queryClient = useQueryClient();
@@ -89,6 +91,12 @@ export default function RpyInfo({ user }: RpyInfoProps) {
     const finalScore =
       (nnnCount.length >= 1 ? nnnCount.length : 0) * nnnPoints + diffScore;
     setPoints(finalScore);
+    const scoreRank = calculateScorePoints(
+      rpyInfo.game,
+      rpyInfo.stage_score[rpyInfo.stage_score.length - 1],
+      rpyInfo.base_info.rank
+    );
+    setScorePoints(scoreRank);
   };
 
   useEffect(() => {
@@ -263,12 +271,18 @@ export default function RpyInfo({ user }: RpyInfoProps) {
               Sprawdź czy replay już istnieje
             </button>
           </div>
-          <p>
-            <strong>Punkty: </strong>
-            {points}
-          </p>
+          <div>
+            <p>
+              <strong>Punkty: </strong>
+              {points}
+            </p>
+            <p>
+              <strong>Punkty score: </strong>
+              {scorePoints}
+            </p>
+          </div>
         </div>
-        <div className="2xl:mt-16 2xl:mb-14">
+        <div className="2xl:mt-16 2xl:mb-12">
           <div className="flex flex-row justify-between py-4">
             <div className="grid grid-flow-col items-center grid-rows-3 text-text">
               <div>
