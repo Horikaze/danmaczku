@@ -1,4 +1,5 @@
 type ScoreWR = {
+  [x: string]: any;
   [key: number]: {
     [key: string]: number;
   };
@@ -11,12 +12,11 @@ export const calculateScorePoints = (
   //target 1 000 000 000
   try {
     const multiplier = Number((1000000000 / scoreWR[game][rank]).toFixed(3));
-    return Number((score * multiplier).toFixed().slice(0, 2))
+    return Number((score * multiplier).toFixed().slice(0, 2));
   } catch (e) {
     return 0;
   }
 };
-
 // WR 20.07.2023
 export const scoreWR: ScoreWR = {
   6: {

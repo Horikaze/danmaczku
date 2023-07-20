@@ -1,7 +1,7 @@
 import { UserPointRanking } from "@/app/types/types";
 import Link from "next/link";
 
-const games = [
+export const games = [
   "EoSD",
   "PCB",
   "IN",
@@ -17,7 +17,7 @@ const games = [
   "WBaWC",
   "UM",
 ];
-const difficulty = ["easy", "normal", "hard", "lunatic", "extra", "phantasm"];
+export const difficulty = ["easy", "normal", "hard", "lunatic", "extra", "phantasm"];
 type SurvivalTableProps = {
   data: UserPointRanking;
 };
