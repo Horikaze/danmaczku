@@ -24,6 +24,23 @@ export default function Info() {
       <CardWithoutName>
         <div className="bg-content break-words text-text p-4">
           <div className="flex flex-col text-xs md:text-base text-text">
+            <h2 className="font-bold text-xl">
+              1. Jak działa system punktów score?
+            </h2>
+            <div className="pl-5 py-3">
+              <p>
+                Maksymalnie możemy dostać 100 pkt za runa z każdej gry z każdego
+                poziomu trudności. Do różnych gier i trudności jest inny
+                mnożnik, jak widać w tabelce poniżej, aby punkty były bardziej
+                zbalansowane. Działa to następująco:
+              </p>
+              <p className="text-white text-sm font-bold">
+                Mnożnik = 1 000 000 000 / WR
+              </p>
+              <p className="text-white text-sm font-bold">
+                Finalne punkty = Mnożnik * nasz score
+              </p>
+            </div>
             <table>
               <thead>
                 <tr>
@@ -58,7 +75,9 @@ export default function Info() {
                             {WR ? (
                               <div className="flex flex-col items-start pl-1">
                                 <p>WR: {WR.toLocaleString()}</p>
-                                <p>Mnożnik: {multiplier}</p>
+                                <p>
+                                  Mnożnik: <strong>{multiplier}</strong>
+                                </p>
                               </div>
                             ) : (
                               ""
