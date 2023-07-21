@@ -11,7 +11,7 @@ export const calculateScorePoints = (
 ) => {
   //target 1 000 000 000
   try {
-    const multiplier = Number((1000000000 / scoreWR[game][rank]).toFixed(3));
+    const multiplier = Number((1000000000 / scoreWR[game][rank]).toFixed(4));
     return Number((score * multiplier).toFixed().slice(0, 2));
   } catch (e) {
     return 0;

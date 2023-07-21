@@ -69,7 +69,7 @@ export default function Info() {
                               diff[0].toUpperCase() + diff.slice(1)
                             ];
                         }
-                        const multiplier = (1000000000 / WR).toFixed(3);
+                        const multiplier = (1000000000 / WR).toFixed(4);
                         return (
                           <td className="border-2 border-text" key={diff}>
                             {WR ? (
