@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CardWithoutName from "../utils/components/CardWithoutName";
 import { difficulty, games } from "../utils/components/SurvivalTable";
 import { scoreWR } from "../utils/scoreSystem";
@@ -55,17 +56,17 @@ export default function Info() {
               </thead>
               <tbody>
                 {games.map((game) => {
-                  const gameAsNumber = games.indexOf(game);
+                  const gameNumber = games.indexOf(game);
                   return (
                     <tr className="text-center border-2 border-text" key={game}>
                       <td>{game}</td>
                       {difficulty.map((diff) => {
                         let WR: number;
                         if (diff === "phantasm") {
-                          WR = scoreWR[gamesNumber[gameAsNumber]][diff];
+                          WR = scoreWR[gamesNumber[gameNumber]][diff];
                         } else {
                           WR =
-                            scoreWR[gamesNumber[gameAsNumber]][
+                            scoreWR[gamesNumber[gameNumber]][
                               diff[0].toUpperCase() + diff.slice(1)
                             ];
                         }
@@ -90,6 +91,11 @@ export default function Info() {
                 })}
               </tbody>
             </table>
+            <div className="place-self-end py-1 underline text-blue-300">
+              <Link href={"https://maribelhearn.com/wr#wrs"} target="_blank">
+                WR Source
+              </Link>
+            </div>
           </div>
         </div>
       </CardWithoutName>
