@@ -19,7 +19,7 @@ export default async function RankingRpy({ rpy }: RankingRpyProps) {
 
   return (
     <CardWithName nameToDisplay={`Ranking TH: ${rpy.game} ${rpy.rank}`}>
-      <div className="flex flex-col gap-2 min-h-[505px]">
+      <div className="flex flex-col gap-2 min-h-[525px]">
         {data.length >= 1 ? (
           data.map((rpy) => {
             return <RecentItem rpy={rpy} key={rpy.checksum} />;

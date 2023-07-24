@@ -63,7 +63,7 @@ export default function MyReqButton({ user }: myReqProps) {
       </button>
       {myRequests && (
         <Modal title="Wysłane" setMyRequests={setMyRequests}>
-          <div className="flex flex-col my-2 h-[19rem] gap-2 overflow-y-scroll pr-2">
+          <div className="flex flex-col my-2 h-[20rem] gap-2 overflow-y-scroll pr-2">
             {data!.map((rpy) => {
               return (
                 <MyReqItem

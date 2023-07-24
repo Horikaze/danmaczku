@@ -80,6 +80,7 @@ export default function RequestsButton({ user }: RequestsButtonProps) {
           filePath: `/users/${rpyReq?.uid}/rpyReq/${rpyReq.checksum}/${rpyReq.rpy_name}`,
           addDate: Timestamp.now(),
           points: rpyReq.points,
+          scorePoints:rpyReq.scorePoints,
           acceptedBy: user.publicUser.displayName,
         });
         await deleteDoc(doc(db, "rpyReq", `${rpyReq.checksum}`));

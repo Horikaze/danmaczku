@@ -102,6 +102,7 @@ export type RpyReq = {
   acceptedBy?: string;
   addDate?: Timestamp;
   points: number;
+  scorePoints:number
 };
 
 export const InitialUserPointRanking: UserPointRanking = {

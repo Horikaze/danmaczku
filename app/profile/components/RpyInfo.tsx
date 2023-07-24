@@ -13,8 +13,10 @@ import { Timestamp, doc, getDoc, setDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable } from "firebase/storage";
 import { useQueryClient } from "@tanstack/react-query";
 import CardWithName from "@/app/utils/components/CardWithName";
-import CardWithoutName from "@/app/utils/components/CardWithoutName";
-import { calculateScorePoints } from "@/app/utils/scoreSystem";
+import {
+  calculateScorePoints,
+  calculateSurvivalPoints,
+} from "@/app/utils/scoreSystem";
 interface RpyInfoProps {
   user: PrivateUser;
 }
@@ -59,38 +61,49 @@ export default function RpyInfo({ user }: RpyInfoProps) {
       ) {
         setisCC(true);
       } else {
+        setisCC(false);
         setPoints(1);
         return;
       }
     }
 
-    let diffScore;
-    let nnnPoints = 0;
+    // let diffScore;
+    // let nnnPoints = 0;
 
-    switch (rpyInfo.base_info.rank) {
-      case "Easy":
-        diffScore = 1;
-        break;
-      case "Normal":
-      case "Extra":
-      case "Phantasm":
-      case "overdrive":
-        diffScore = 2;
-        break;
-      case "Hard":
-        diffScore = 3;
-        break;
-      case "Lunatic":
-        diffScore = 4;
-        break;
-      default:
-        diffScore = 0;
-        break;
-    }
-    nnnPoints = diffScore >= 3 ? 2 : 1;
-    const finalScore =
-      (nnnCount.length >= 1 ? nnnCount.length : 0) * nnnPoints + diffScore;
-    setPoints(finalScore);
+    // switch (rpyInfo.base_info.rank) {
+    //   case "Easy":
+    //     diffScore = 1;
+    //     break;
+    //   case "Normal":
+    //   case "Extra":
+    //   case "Phantasm":
+    //   case "overdrive":
+    //     diffScore = 2;
+    //     break;
+    //   case "Hard":
+    //     diffScore = 3;
+    //     break;
+    //   case "Lunatic":
+    //     diffScore = 4;
+    //     break;
+    //   default:
+    //     diffScore = 0;
+    //     break;
+    // }
+    // nnnPoints = diffScore >= 3 ? 2 : 1;
+    // const finalScore =
+    //   (nnnCount.length >= 1 ? nnnCount.length : 0) * nnnPoints + diffScore;
+    // setPoints(finalScore);
+    const finalPoints = calculateSurvivalPoints(
+      rpyInfo.game,
+      rpyInfo.base_info.shottype,
+      rpyInfo.game === 9
+        ? rpyInfo.base_info.character[0].split(" ")[0]
+        : (rpyInfo.base_info.character as unknown as string),
+      rpyInfo.base_info.rank,
+      rpyInfo.game === 8 ? rpyInfo.base_info.stage : undefined
+    );
+    setPoints(finalPoints);
     const scoreRank = calculateScorePoints(
       rpyInfo.game,
       rpyInfo.stage_score[rpyInfo.stage_score.length - 1],
@@ -183,6 +196,7 @@ export default function RpyInfo({ user }: RpyInfoProps) {
         filePath: `/users/${user?.uid}/rpyReq/${data.replay.checksum}/${data.replay.rpy_name}`,
         reqDate: Timestamp.now(),
         points: points,
+        scorePoints: scorePoints,
       });
       const storageRef = ref(
         storage,
@@ -278,7 +292,16 @@ export default function RpyInfo({ user }: RpyInfoProps) {
             </p>
             <p>
               <strong>Punkty score: </strong>
-              {scorePoints}
+              {rpyInfo !== initialThrep
+                ? `${
+                    rpyInfo.stage_score[rpyInfo.stage_score.length - 1]
+                  } * ${calculateScorePoints(
+                    rpyInfo.game,
+                    rpyInfo.stage_score[rpyInfo.stage_score.length - 1],
+                    rpyInfo.base_info.rank,
+                    true
+                  )} = ${scorePoints}`
+                : "0"}
             </p>
           </div>
         </div>

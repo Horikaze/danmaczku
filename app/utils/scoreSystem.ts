@@ -1,4 +1,4 @@
-type ScoreWR = {
+type Score = {
   [x: string]: any;
   [key: number]: {
     [key: string]: number;
@@ -7,18 +7,53 @@ type ScoreWR = {
 export const calculateScorePoints = (
   game: number,
   score: number,
-  rank: string
+  rank: string,
+  onlyMultiplier?: boolean
 ) => {
   //target 1 000 000 000
   try {
     const multiplier = Number((1000000000 / scoreWR[game][rank]).toFixed(4));
-    return Number((score * multiplier).toFixed().slice(0, 2));
+    if (onlyMultiplier) {
+      return multiplier;
+    } else {
+      return Number((score * multiplier).toFixed().slice(0, 3));
+    }
   } catch (e) {
     return 0;
   }
 };
+export const calculateSurvivalPoints = (
+  game: number,
+  shottype: string,
+  character: string,
+  rank: string,
+  inStage?: string
+) => {
+  try {
+    if (game === 8) {
+      character = character.replace(/[\s&]/g, "");
+    }
+    if (inStage != undefined) {
+      game = 80
+      if (inStage[3] == "A") {
+        game = 80;
+      } else if (inStage[3] == "B") {
+        game = 81;
+      }
+    }
+    console.log(game, shottype,character,rank,inStage);
+    const toSearch = (character + shottype).replace(/\s/g, "");
+    
+    const score = survivalSystem[game][toSearch];
+    console.log(score);
+    return score;
+  } catch (e) {
+    return 0;
+  }
+};
+
 // WR 20.07.2023
-export const scoreWR: ScoreWR = {
+export const scoreWR: Score = {
   6: {
     Easy: 172044560,
     Normal: 366299400,
@@ -117,5 +152,135 @@ export const scoreWR: ScoreWR = {
     Hard: 10222409260,
     Lunatic: 14893827310,
     Extra: 7665770150,
+  },
+};
+//// POINTS 22.07.2023
+export const survivalSystem: Score = {
+  6: {
+    ReimuA: 24,
+    ReimuB: 20,
+    MarisaA: 36,
+    MarisaB: 30,
+  },
+  7: {
+    ReimuA: 9,
+    ReimuB: 8,
+    MarisaA: 14,
+    MarisaB: 15,
+    SakuyaA: 10,
+    SakuyaB: 8,
+  },
+  80: {
+    RmYk: 14,
+    MsAl: 15,
+    SkRr: 16,
+    YmYy: 16,
+    Reimu: 42,
+    Yukari: 18,
+    Marisa: 29,
+    Alice: 64,
+    Sakuya: 64,
+    Remilia: 20,
+    Youmu: 16,
+    Yuyuko: 50,
+  },
+  81: {
+    RmYk: 18,
+    MsAl: 18,
+    SkRr: 20,
+    YmYy: 20,
+    Reimu: 72,
+    Yukari: 23,
+    Marisa: 38,
+    Alice: 76,
+    Sakuya: 84,
+    Remilia: 26,
+    Youmu: 20,
+    Yuyuko: 57,
+  },
+  9: {
+    ///
+  },
+  10: {
+    ReimuA: 10,
+    ReimuB: 9,
+    ReimuC: 11,
+    MarisaA: 20,
+    MarisaB: 4,
+    MarisaC: 10,
+  },
+  11: {
+    ReimuA: 9,
+    ReimuB: 11,
+    ReimuC: 10,
+    MarisaA: 12,
+    MarisaB: 13,
+    MarisaC: 26,
+  },
+  12: {
+    ReimuA: 18,
+    ReimuB: 26,
+    MarisaA: 28,
+    MarisaB: 36,
+    SanaeA: 30,
+    SanaeB: 24,
+  },
+  128: {
+    /// TODO
+  },
+  13: {
+    Reimu: 9,
+    Marisa: 18,
+    Sanae: 25,
+    Youmu: 8,
+  },
+  14: {
+    ReimuA: 4,
+    ReimuB: 50,
+    MarisaA: 150,
+    MarisaB: 30,
+    SakuyaA: 4,
+    SakuyaB: 100,
+  },
+  15: {
+    Reimu: 32,
+    Marisa: 80,
+    Sanae: 64,
+    Reisen: 80,
+  },
+  16: {
+    ReimuSpring: 36,
+    CirnoSpring: 40,
+    AyaSpring: 50,
+    MarisaSpring: 34,
+    ReimuSummer: 36,
+    CirnoSummer: 41,
+    AyaSummer: 50,
+    MarisaSummer: 34,
+    ReimuAutumn: 10,
+    CirnoAutumn: 13,
+    AyaAutumn: 16,
+    MarisaAutumn: 10,
+    ReimuWinter: 11,
+    CirnoWinter: 14,
+    AyaWinter: 17,
+    MarisaWinter: 12,
+  },
+  17: {
+    ReimuWolf: 10,
+    ReimuOtter: 25,
+    ReimuEagle: 19,
+    MarisaWolf: 8,
+    MarisaOtter: 19,
+    MarisaEagle: 11,
+    YoumuWolf: 7,
+    YoumuOtter: 8,
+    YoumuEagle: 18,
+  },
+  18: {
+    Reimu: 40,
+    Marisa: 48,
+    Sanae: 24,
+    Sakuya: 18,
   },
 };

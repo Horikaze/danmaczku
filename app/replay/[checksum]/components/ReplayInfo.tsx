@@ -53,6 +53,10 @@ export default function ReplayInfo({ rpy, rpyLink }: ReplayInfoProps) {
         {rpy.points}
       </p>
       <p>
+        <strong>Punkty score: </strong>
+        {rpy.scorePoints}
+      </p>
+      <p>
         <strong>Slow Rate: </strong>
         {rpy.slow_rate}
       </p>

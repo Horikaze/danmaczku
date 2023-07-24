@@ -65,6 +65,10 @@ export default function MyReqItem({ rpyReq, cancelReq }: ReqItemProps) {
           <strong>Rank points: </strong>
           {rpyReq.points}
         </p>
+        <p>
+          <strong>Score points: </strong>
+          {rpyReq.scorePoints}
+        </p>
       </div>
       <div className="flex flex-col justify-between">
         <div className="flex flex-col">

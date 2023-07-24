@@ -60,6 +60,10 @@ export default function ReqItem({ rpyReq, reqAcc }: ReqItemProps) {
           <strong>Rank points: </strong>
           {rpyReq.points}
         </p>
+        <p>
+          <strong>Rank points: </strong>
+          {rpyReq.scorePoints}
+        </p>
       </div>
       <div className="flex flex-col justify-between">
         <div className="flex flex-col">
