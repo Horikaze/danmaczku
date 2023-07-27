@@ -5,7 +5,6 @@ import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 const db = initDb();
-export const revalidate = 1;
 export async function GET(request: NextRequest, response: NextResponse) {
   let users: PrivateUser[] = [];
   const col = collection(db, "users");
