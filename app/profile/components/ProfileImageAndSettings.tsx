@@ -8,6 +8,7 @@ import { PrivateUserImageLink } from "@/app/types/types";
 import MyReqButton from "./ProfileButtons/MyReqButton";
 import ProfileSettingsButton from "./ProfileButtons/ProfileSettingsButton";
 import SignOut from "./ProfileButtons/SignOut";
+import GenerateProfileImage from "./ProfileButtons/GenerateProfileImage";
 const storage = initStorage();
 const db = initDb();
 interface ProfileImageProps {
@@ -51,13 +52,13 @@ export default function ProfileImageAndSettings({ user }: ProfileImageProps) {
   };
   return (
     <div className="grid grid-cols-3">
-      <div className="flex flex-col col-start-1 text-text text-center justify-center bg-content h-32 my-2 rounded-sm">
+      <div className="flex flex-col col-start-1 text-text text-center justify-center bg-content h-56 my-2 rounded-sm">
         <h1>TODO badge list</h1>
       </div>
       <div className="col-start-2 justify-center flex flex-col">
         <div className="flex flex-col justify-center items-center">
           <label
-            className="h-20 w-20 cursor-pointer hover:brightness-110 relative"
+            className="h-20 w-20 md:h-28 md:w-28 cursor-pointer hover:brightness-110 relative"
             htmlFor="changePfp"
           >
             <Image
@@ -80,11 +81,12 @@ export default function ProfileImageAndSettings({ user }: ProfileImageProps) {
           </label>
         </div>
       </div>
-      <div className="col-start-3 flex flex-col py-2 justify-center h-32 items-end gap-2">
+      <div className="col-start-3 flex flex-col py-2 justify-center h-56 items-end gap-2">
         <ProfileSettingsButton uid={user.publicUser.uid} />
         {user.publicUser.admin === true && <RequestsButton user={user} />}
         <MyReqButton user={user} />
         <SignOut />
+        <GenerateProfileImage user={user} />
       </div>
     </div>
   );
