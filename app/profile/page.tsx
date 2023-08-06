@@ -5,7 +5,6 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Loading from "../rankings/loading";
 import { useAuthState } from "react-firebase-hooks/auth";
-
 export default function Profile() {
   const auth = initAuth();
   const [user, loading] = useAuthState(auth);
