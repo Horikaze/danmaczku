@@ -34,18 +34,16 @@ export const calculateSurvivalPoints = (
       character = character.replace(/[\s&]/g, "");
     }
     if (inStage != undefined) {
-      game = 80
+      game = 80;
       if (inStage[3] == "A") {
         game = 80;
       } else if (inStage[3] == "B") {
         game = 81;
       }
     }
-    console.log(game, shottype,character,rank,inStage);
     const toSearch = (character + shottype).replace(/\s/g, "");
-    
+
     const score = survivalSystem[game][toSearch];
-    console.log(score);
     return score;
   } catch (e) {
     return 0;
