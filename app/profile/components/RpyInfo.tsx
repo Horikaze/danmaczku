@@ -43,6 +43,7 @@ export default function RpyInfo({ user }: RpyInfoProps) {
   };
 
   const rpyInfoCheck = async (e: HTMLInputElement) => {
+    setNnnCount([]);
     if (e.files! && e.files!?.length > 0) {
       const data = await updateRpy(e);
       setRpyInfo(data!.data);
