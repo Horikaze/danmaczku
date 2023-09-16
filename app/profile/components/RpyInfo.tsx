@@ -67,43 +67,43 @@ export default function RpyInfo({ user }: RpyInfoProps) {
       }
     }
 
-    // let diffScore;
-    // let nnnPoints = 0;
+    let diffScore;
+    let nnnPoints = 0;
 
-    // switch (rpyInfo.base_info.rank) {
-    //   case "Easy":
-    //     diffScore = 1;
-    //     break;
-    //   case "Normal":
-    //   case "Extra":
-    //   case "Phantasm":
-    //   case "overdrive":
-    //     diffScore = 2;
-    //     break;
-    //   case "Hard":
-    //     diffScore = 3;
-    //     break;
-    //   case "Lunatic":
-    //     diffScore = 4;
-    //     break;
-    //   default:
-    //     diffScore = 0;
-    //     break;
-    // }
-    // nnnPoints = diffScore >= 3 ? 2 : 1;
-    // const finalScore =
-    //   (nnnCount.length >= 1 ? nnnCount.length : 0) * nnnPoints + diffScore;
-    // setPoints(finalScore);
-    const finalPoints = calculateSurvivalPoints(
-      rpyInfo.game,
-      rpyInfo.base_info.shottype,
-      rpyInfo.game === 9
-        ? rpyInfo.base_info.character[0].split(" ")[0]
-        : (rpyInfo.base_info.character as unknown as string),
-      rpyInfo.base_info.rank,
-      rpyInfo.game === 8 ? rpyInfo.base_info.stage : undefined
-    );
-    setPoints(finalPoints);
+    switch (rpyInfo.base_info.rank) {
+      case "Easy":
+        diffScore = 1;
+        break;
+      case "Normal":
+      case "Extra":
+      case "Phantasm":
+      case "overdrive":
+        diffScore = 2;
+        break;
+      case "Hard":
+        diffScore = 3;
+        break;
+      case "Lunatic":
+        diffScore = 4;
+        break;
+      default:
+        diffScore = 0;
+        break;
+    }
+    nnnPoints = diffScore >= 3 ? 2 : 1;
+    const finalScore =
+      (nnnCount.length >= 1 ? nnnCount.length : 0) * nnnPoints + diffScore;
+    setPoints(finalScore);
+    // const finalPoints = calculateSurvivalPoints(
+    //   rpyInfo.game,
+    //   rpyInfo.base_info.shottype,
+    //   rpyInfo.game === 9
+    //     ? rpyInfo.base_info.character[0].split(" ")[0]
+    //     : (rpyInfo.base_info.character as unknown as string),
+    //   rpyInfo.base_info.rank,
+    //   rpyInfo.game === 8 ? rpyInfo.base_info.stage : undefined
+    // );
+    // setPoints(finalPoints);
     const scoreRank = calculateScorePoints(
       rpyInfo.game,
       rpyInfo.stage_score[rpyInfo.stage_score.length - 1],

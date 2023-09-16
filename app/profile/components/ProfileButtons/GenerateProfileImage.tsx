@@ -1,28 +1,27 @@
 import { PrivateUserImageLink } from "@/app/types/types";
 import background from "../../../../public/images/bg.png";
-import { Rubik } from "next/font/google";
-const rubik = Rubik({ subsets: ["latin"] });
+import { useState } from "react";
 type GenerateProfileImageProps = {
   user: PrivateUserImageLink;
 };
 export default function GenerateProfileImage({
   user,
-}: GenerateProfileImageProps) {
+}: GenerateProfileImageProps) {  
+  const [link, setLink] = useState("")
   const generateImage = async () => {
     const canvas = document.createElement("canvas");
     canvas.height = 200;
     canvas.width = 600;
     const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      return;
+    }
     const avatar = new Image();
     const image = new Image();
     image.src = background.src;
     avatar.setAttribute("crossorigin", "anonymous");
     avatar.src = user.imageLink;
     avatar.onload = () => {
-      if (!ctx) {
-        return;
-      }
-
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
       const circle = {
         x: 10,
@@ -49,15 +48,26 @@ export default function GenerateProfileImage({
       ctx.drawImage(avatar, circle.x - hsx, circle.y - hsy, hsx * 2, hsy * 2);
       ctx.restore();
 
-      ctx.font = `30px ${rubik.className}`;
-      ctx.fillStyle = "blue";
+      ctx.font = `30px Arial`;
+      ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.fillText(
         `${user.publicUser.displayName}`,
         canvas.width / 2,
         canvas.height / 2
       );
+      ctx.fillText(
+        `Rank score: ${user.publicUser.scoreRank}`,
+        canvas.width / 2,
+        180
+      );
+      ctx.fillText(
+        `Rank 1cc: ${user.publicUser.achievementsRank}`,
+        canvas.width / 2,
+        200
+      );
       ctx.restore();
+
       const date = Date.now();
       const formattedDate = new Date(date).toLocaleDateString("pl-PL", {
         day: "2-digit",
@@ -65,12 +75,14 @@ export default function GenerateProfileImage({
         year: "numeric",
       });
       const link = document.createElement("a");
-      link.href = canvas.toDataURL();
+      link.href = canvas.toDataURL();      
       link.download = `${user.publicUser.displayName}-${formattedDate}.png`;
-      link.click();
+      setLink(link.href)
+      // link.click();
     };
   };
   return (
+    <>
     <button
       onClick={() => {
         generateImage();
@@ -79,5 +91,7 @@ export default function GenerateProfileImage({
     >
       Wygeneruj obrazek
     </button>
+    <img src={link} alt="xddd" />
+    </>
   );
 }

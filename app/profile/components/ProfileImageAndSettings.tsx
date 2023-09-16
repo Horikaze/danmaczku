@@ -81,12 +81,12 @@ export default function ProfileImageAndSettings({ user }: ProfileImageProps) {
           </label>
         </div>
       </div>
-      <div className="col-start-3 flex flex-col py-2 justify-center h-56 items-end gap-2">
+      <div className="col-start-3 flex flex-col py-2 justify-center  items-end gap-2">
         <ProfileSettingsButton uid={user.publicUser.uid} />
         {user.publicUser.admin === true && <RequestsButton user={user} />}
         <MyReqButton user={user} />
         <SignOut />
-        <GenerateProfileImage user={user} />
+        {/* <GenerateProfileImage user={user} /> */}
       </div>
     </div>
   );
