@@ -50,6 +50,35 @@ export const calculateSurvivalPoints = (
   }
 };
 
+export const calculateSurvivalPoints2 = (rank: string, nnnCount: number) => {
+  let diffScore;
+  let nnnPoints = 0;
+
+  switch (rank) {
+    case "Easy":
+      diffScore = 1;
+      break;
+    case "Normal":
+    case "Extra":
+    case "Phantasm":
+    case "overdrive":
+      diffScore = 2;
+      break;
+    case "Hard":
+      diffScore = 3;
+      break;
+    case "Lunatic":
+      diffScore = 4;
+      break;
+    default:
+      diffScore = 0;
+      break;
+  }
+  nnnPoints = diffScore >= 3 ? 2 : 1;
+  const finalScore = (nnnCount >= 1 ? nnnCount : 0) * nnnPoints + diffScore;
+  return finalScore;
+};
+
 // WR 20.07.2023
 export const scoreWR: Score = {
   6: {

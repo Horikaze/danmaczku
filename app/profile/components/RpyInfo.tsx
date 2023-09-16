@@ -16,6 +16,7 @@ import CardWithName from "@/app/utils/components/CardWithName";
 import {
   calculateScorePoints,
   calculateSurvivalPoints,
+  calculateSurvivalPoints2,
 } from "@/app/utils/scoreSystem";
 interface RpyInfoProps {
   user: PrivateUser;
@@ -66,34 +67,9 @@ export default function RpyInfo({ user }: RpyInfoProps) {
         return;
       }
     }
-
-    let diffScore;
-    let nnnPoints = 0;
-
-    switch (rpyInfo.base_info.rank) {
-      case "Easy":
-        diffScore = 1;
-        break;
-      case "Normal":
-      case "Extra":
-      case "Phantasm":
-      case "overdrive":
-        diffScore = 2;
-        break;
-      case "Hard":
-        diffScore = 3;
-        break;
-      case "Lunatic":
-        diffScore = 4;
-        break;
-      default:
-        diffScore = 0;
-        break;
-    }
-    nnnPoints = diffScore >= 3 ? 2 : 1;
-    const finalScore =
-      (nnnCount.length >= 1 ? nnnCount.length : 0) * nnnPoints + diffScore;
-    setPoints(finalScore);
+    setPoints(
+      calculateSurvivalPoints2(rpyInfo.base_info.rank, nnnCount.length)
+    );
     // const finalPoints = calculateSurvivalPoints(
     //   rpyInfo.game,
     //   rpyInfo.base_info.shottype,
